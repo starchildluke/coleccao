@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allAtoms = await getCollection('atom');
+const filteredAtoms = allAtoms.map((atom) => (
+	atom.data.tags
+	)).flat();
+const processedMolecules: any = filteredAtoms.reduce((acc, tag) => {
+	const value = acc[tag] || 0;
+	return {
+		...acc,
+		[tag]: value + 1
+	}
+}, {})
+const allMolecules: any = [...new Set(allAtoms.map((atom: any) => atom.data.tags).flat())];
+const sortedMolecules = allMolecules.sort()
+
+const title = "Molecules";
+---
+
+<style>
+
+	ul.molecule-list {
+		text-align: center;
+		list-style: none;
+		font-size: 1.5rem;
+	}
+
+	ul.molecule-list > li {
+		display: inline-block;
+	}
+
+	li:not(:last-child)::after {
+		margin: 0 0.5rem;
+		content: "/";
+	}
+
+	.molecule-count {
+		color: #ab9793;
+		font-size: 1rem;
+	}
+</style>
+
+<Layout title={title}>
+	<h1>{title}</h1>
+  <ul class="molecule-list">
+  	{sortedMolecules.map((tag) =>
+  		<li><a href=`/molecule/${tag}/`>{tag}</a><span class="molecule-count"> ({processedMolecules[tag]})</span></li>
+  	)}
+  </ul>
+</Layout>

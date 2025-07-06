@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Post from '../../components/Post.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const atoms = await getCollection('atom');
+  return atoms.map((atom) => ({
+    params: { slug: atom.id, tags: atom.tags },
+    props: { atom }
+  }));
+}
+
+type Props = CollectionEntry<'atom'>;
+
+const { atom } = Astro.props;
+
+---
+<style>
+  dl {
+    display: flex;
+    flex-direction: column;
+    margin: var(--base-gap) 0;
+  }
+
+  .dt-dd-line {
+    display: flex;
+    gap: calc(var(--base-gap) / 4);
+  }
+</style>
+
+<Layout title={atom.data.title}>
+<Post {atom.data}>
+  <h1>{atom.data.title}</h1>
+      <img src={atom.data.image} width={atom.data.dimensions[0]} height={atom.data.dimensions[1]}/>
+      <dl>
+        <section class="dt-dd-line"><dt>Date added:</dt> <dd><FormattedDate date={atom.data.dateAdded} /></dd></section>
+        {atom.data.source ? <section class="dt-dd-line"><dt>Source:</dt> <dd><a href={atom.data.source}>{atom.data.source}</a></dd></section> : ""}
+        <section class="dt-dd-line">Molecules: {(atom.data.tags ? atom.data.tags.flatMap((molecule: string) => <span class="molecule"><a href=`/molecule/${molecule}/`>{molecule}</a> </span>) : "")}</section>
+      </dl>
+      <Fragment set:html={atom.rendered.html} />
+</Post>
+</Layout>

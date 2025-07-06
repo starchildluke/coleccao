@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allAtoms = await getCollection('atom');
+  const sortedAtoms = allAtoms.sort((a, b) => new Date(b.data.dateAdded) - new Date(a.data.dateAdded));
+  const allMolecules = new Set();
+  sortedAtoms.map(atom => {
+      atom.data.tags && atom.data.tags.map(molecule => allMolecules.add(molecule))
+  })
+
+  return Array.from(allMolecules).map((molecule) => {
+    const filteredAtoms = sortedAtoms.filter((atom) => atom.data.tags.includes(molecule))
+    return {
+      params: { molecule },
+      props: {
+        atoms: filteredAtoms
+      }
+    };
+  });
+}
+
+const { atoms } = Astro.props;
+const { molecule } = Astro.params;
+
+---
+
+<Layout title={molecule + " tag page"}>
+	<h1>{molecule}</h1>
+    <div class="atom-list">
+	    {atoms.map((atom) => (
+	      <figure class="atom-listing">
+        <a href={`/atom/${atom.id}/`}>
+          { atoms.indexOf(atom) < 4 ?
+            <img src={atom.data.image} alt={atom.data.description} width={atom.data.dimensions[0]} height={atom.data.dimensions[1]} fetchpriority="high" /> :
+            <img src={atom.data.image} alt={atom.data.description} width={atom.data.dimensions[0]} height={atom.data.dimensions[1]} loading="lazy" />
+          }
+        </a>
+        <figcaption>{atom.data.title}</figcaption>
+      </figure>
+	    ))}
+    </div>
+	</Layout>

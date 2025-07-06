@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths({paginate}) {
+  const allPosts = await getCollection('atom');
+  const sortedPosts = allPosts.sort((a, b) => new Date(b.data.dateAdded) - new Date(a.data.dateAdded));
+  return paginate(sortedPosts, { pageSize: 20 });
+}
+
+export interface Props {
+	page: any;
+}
+
+const { page } = Astro.props;
+---
+
+<style>
+  .page-links {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+  .prev, .next {
+    padding: 0.75rem 1rem;
+    border: 1px solid #504b4b;
+    border-radius: 5px;
+    background: #1f1b1b;
+  }
+</style>
+
+<Layout title="Colecçao">
+	<section>
+    <div class="atom-list">
+    {page.data.map((atom: any) => (
+      <figure class="atom-listing">
+        <a href={`/atom/${atom.id}/`}>
+        	{ page.data.indexOf(atom) < 4 ?
+        		<img src={atom.data.image} alt={atom.data.description} width={atom.data.dimensions[0]} height={atom.data.dimensions[1]} fetchpriority="high" /> :
+        		<img src={atom.data.image} alt={atom.data.description} width={atom.data.dimensions[0]} height={atom.data.dimensions[1]} loading="lazy" />
+        	}
+        </a>
+        <figcaption>{atom.data.title}</figcaption>
+      </figure>
+    ))}
+    </div>
+    </section>
+        <div class="page-links">{page.url.prev && (
+          <a class='prev' href={page.url.prev || '#'}>&laquo; Prev</a>
+        )}
+        {page.url.prev && page.url.next && ""}
+        {page.url.next && (
+          <a class='next' href={page.url.next || '#'}>Next &raquo;</a>
+        )}</div>
+	</Layout>
