@@ -7,6 +7,12 @@
 	--base-gap: 2rem;
 }
 
+@font-face {
+	font-family: Aileron;
+	src: url("/fonts/Aileron-Regular.woff2") format("woff2");
+	font-display: swap;
+}
+
 .container {
 	display: flex;
 	flex-direction: column;

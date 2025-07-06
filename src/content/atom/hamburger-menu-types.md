@@ -7,7 +7,7 @@ dimensions: [422, 110]
 tags: 
   - design
   - hamburger menus
-dateAdded: '6 Jul 2025'
+dateAdded: 6 Jul 2025 19:00
 ---
 
 I love the names for each type!
