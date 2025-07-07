@@ -30,7 +30,7 @@ const { atom } = Astro.props;
   }
 </style>
 
-<Layout title={atom.data.title}>
+<Layout title={atom.data.title} ogImage={atom.data.image}>
 <Post {atom.data}>
   <h1>{atom.data.title}</h1>
       <img src={atom.data.image} width={atom.data.dimensions[0]} height={atom.data.dimensions[1]}/>

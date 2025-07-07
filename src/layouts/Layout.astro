@@ -1,7 +1,9 @@
 ---
-import Logo from '../components/Logo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
 
-const { title } = Astro.props;
+const { title, robots, ogImage } = Astro.props;
 ---
 
 <!doctype html>
@@ -9,34 +11,24 @@ const { title } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={Astro.url.pathname == "/" ? site.description : `The atom page for ${title}`} />
+		<meta name="robots" content={robots ? robots : "index, follow"} />
 		<link rel="icon" type="image/png" href="/favicon.png" />
+		<meta property="og:image" content={ogImage ? ogImage : "/images/coffee-beans.png"}>
+		<link rel="canonical" href={Astro.url} />
 		<link rel="stylesheet" type="text/css" href="/style.css" />
 		<link rel="preload" as="font" href="/fonts/Aileron-Regular.woff2" type="font/woff2" crossorigin="">
+		{ogImage ? <link rel="preload" as="image" type=`image/${ogImage.split(".").pop()}` href={ogImage}> : ""}
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<style>a#burger {text-decoration:none;} a#burger:hover{opacity:0.7;}</style>
 	</head>
-	<header>
-				<section class="logo-tagline">
-					<Logo />
-					<span>Creativity—in club form</span>
-				</section>
-				<nav>
-					<ul>
-						<li><a href="/">Home</a></li>
-						<li><a href="/about/">About</a></li>
-						<li><a href="/molecules/">Molecules</a></li>
-						<li><a href="/molecule/hamburger%20menus/" id="burger">🍔</a></li>
-					</ul>
-				</nav>
-			</header>
+	<Header />
 	<div class="container">
 		<body>
 			<slot />
 		</body>
 	</div>
 	<hr>
-	<footer>
-		<p>Luke Davis © 2025</p>
-	</footer>
+	<Footer />
 </html>
