@@ -33,8 +33,12 @@ a {
 	color: #ffde47;
 }
 
-a:hover {
+a:hover, a#burger {
 	text-decoration: none;
+}
+
+a#burger:hover {
+	opacity: 0.7;
 }
 
 .logo-tagline {

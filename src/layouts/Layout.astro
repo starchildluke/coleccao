@@ -21,7 +21,6 @@ const { title, robots, ogImage } = Astro.props;
 		{ogImage ? <link rel="preload" as="image" type=`image/${ogImage.split(".").pop()}` href={ogImage}> : ""}
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<style>a#burger {text-decoration:none;} a#burger:hover{opacity:0.7;}</style>
 	</head>
 	<Header />
 	<div class="container">
