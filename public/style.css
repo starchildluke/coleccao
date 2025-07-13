@@ -3,6 +3,14 @@
 	padding: 0;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 :root {
 	--base-gap: 2rem;
 }
@@ -16,7 +24,8 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	margin: 0 var(--base-gap) var(--base-gap) var(--base-gap);
+	margin-inline: var(--base-gap);
+	margin-bottom: var(--base-gap);
 	min-height: calc(100vh - (var(--base-gap) * 8));
 }
 
@@ -124,6 +133,10 @@ hr {
 
 ul {
 	margin-left: var(--base-gap);
+}
+
+figcaption {
+	line-height: 1.6;
 }
 
 @media (max-width: 440px) {
