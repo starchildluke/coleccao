@@ -16,7 +16,6 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	flex-wrap: wrap;
 	margin: 0 var(--base-gap) var(--base-gap) var(--base-gap);
 	min-height: calc(100vh - (var(--base-gap) * 8));
 }
@@ -66,7 +65,7 @@ a#burger:hover {
 	transform: rotate(0.0015turn);
 }
 
-figure img {
+img {
 	max-width: 100%;
   	height: auto;
 }
@@ -94,10 +93,11 @@ nav {
 	align-items: center;
 }
 
-nav ul {
+.nav-list {
 	display: flex;
 	gap: calc(var(--base-gap) / 4);
 	list-style: none;
+	margin-left: 0;
 }
 
 h1 {
