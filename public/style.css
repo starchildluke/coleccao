@@ -124,7 +124,7 @@ p {
 }
 
 hr {
-	width: calc(100% - var(--base-gap) * 2);
+		width: calc(100% - var(--base-gap) * 2);
   	margin: 0 auto;
   	border: 0;
   	background-color: #f7f7f7;
@@ -148,6 +148,13 @@ figcaption {
 		gap: calc(var(--base-gap) / 2);
 	}
   
+}
+
+blockquote {
+		border-left: 4px solid #f7f7f7;
+		margin: 1em 0;
+		padding-left: 1em;
+		color: #c0c0c0;
 }
 
 

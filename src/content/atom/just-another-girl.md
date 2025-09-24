@@ -6,7 +6,7 @@ dimensions: [437, 500]
 tags: 
   - black culture
   - black women
-  - life quotes
+  - words of wisdom
 dateAdded: '2 Jul 2025'
 ---
 
