@@ -4,7 +4,7 @@ description: A Black woman saying 'Yo, but we're getting our shit together'
 image: /images/just-another-girl.jpg
 dimensions: [437, 500]
 tags: 
-  - black culture
+  - black cultures
   - black women
   - words of wisdom
 dateAdded: '2 Jul 2025'
