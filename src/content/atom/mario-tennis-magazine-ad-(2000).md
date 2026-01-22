@@ -13,8 +13,8 @@ tags:
   - magazine
   - good copy
   - tennis
-  - Mario
-  - Nintendo
+  - mario
+  - nintendo
 dateAdded: 22 Jan 2026 01:00
 ---
 
