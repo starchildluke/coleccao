@@ -8,7 +8,7 @@ tags:
   - sony
   - transparent tech
   - audio tech
-  - 90s
+  - 1990s
   - japan
   - aesthetic
 dateAdded: 15 Jul 2025 23:06

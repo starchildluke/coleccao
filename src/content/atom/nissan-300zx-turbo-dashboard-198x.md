@@ -11,7 +11,7 @@ tags:
   - ui
   - cars
   - 1980s
-  - retro
+  - retro stuff
   - futurism
   - data viz
   - old tech
