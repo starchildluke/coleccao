@@ -36,9 +36,9 @@ const { atom } = Astro.props;
   <h1>{atom.data.title}</h1>
       <img src={atom.data.image} width={atom.data.dimensions[0]} height={atom.data.dimensions[1]}/>
       <dl>
-        <section class="dt-dd-line"><dt>Date added:</dt> <dd><FormattedDate date={atom.data.dateAdded} /></dd></section>
-        {atom.data.source ? <section class="dt-dd-line"><dt>Source:</dt> <dd><a href={atom.data.source}>{atom.data.source}</a></dd></section> : ""}
-        <section class="dt-dd-line">Molecules: {(atom.data.tags ? atom.data.tags.flatMap((molecule: string) => <span class="molecule"><a href=`/molecule/${molecule}/`>{molecule}</a> </span>) : "")}</section>
+        <div class="dt-dd-line"><dt>Date added:</dt> <dd><FormattedDate date={atom.data.dateAdded} /></dd></div>
+        {atom.data.source && atom.data.source.includes("http") ? <div class="dt-dd-line"><dt>Source:</dt> <dd><a href={atom.data.source}>{atom.data.source}</a></dd></div> : <div class="dt-dd-line"><dt>Source:</dt><dd>{atom.data.source}</dd></div>}
+        <div class="dt-dd-line">Molecules: {(atom.data.tags ? atom.data.tags.flatMap((molecule: string) => <span class="molecule"><a href=`/molecule/${molecule}/`>{molecule}</a> </span>) : "")}</div>
       </dl>
       <Fragment set:html={atom.rendered.html} />
 </Post>
