@@ -10,7 +10,8 @@ tags:
   - japan
   - cars
   - photography
-dateAdded: ''
+  - tumblr
+dateAdded: '1 Jan 2025'
 ---
 
 I can't believe this was taken in the mid-70s.

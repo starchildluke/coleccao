@@ -7,8 +7,9 @@ dimensions:
   - '500'
   - '955'
 tags:
-  - "pokémon"
+  - pokémon
   - illustration
+  - tumblr
 dateAdded: 11 Mar 2026 22:26
 ---
 

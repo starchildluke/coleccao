@@ -12,6 +12,7 @@ tags:
   - photography
   - black cultures
   - words of wisdom
+  - tumblr
 dateAdded: 23 Sep 2025 21:56
 ---
 
