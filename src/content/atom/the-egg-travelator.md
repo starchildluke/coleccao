@@ -6,5 +6,6 @@ dimensions: [640, 640]
 tags: 
   - music
   - album covers
+  - airports
 dateAdded: '1 Jul 2025'
 ---

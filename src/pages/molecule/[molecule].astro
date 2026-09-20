@@ -11,23 +11,25 @@ export async function getStaticPaths() {
   })
 
   return Array.from(allMolecules).map((molecule) => {
+    const slug = molecule.toLowerCase().replaceAll(' ', '-');
     const filteredAtoms = sortedAtoms.filter((atom) => atom.data.tags.includes(molecule))
     return {
-      params: { molecule },
+      params: { molecule: slug },
       props: {
+        molName: molecule,
         atoms: filteredAtoms
       }
     };
   });
 }
 
-const { atoms } = Astro.props;
+const { molName, atoms } = Astro.props;
 const { molecule } = Astro.params;
 
 ---
 
-<Layout title={molecule + " tag page"}>
-	<h1>{molecule}</h1>
+<Layout title={molName + " tag page"}>
+	<h1>{molName}</h1>
     <div class="atom-list">
 	    {atoms.map((atom) => (
 	      <figure class="atom-listing">

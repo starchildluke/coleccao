@@ -38,7 +38,7 @@ const { atom } = Astro.props;
       <dl>
         <div class="dt-dd-line"><dt>Date added:</dt> <dd><FormattedDate date={atom.data.dateAdded} /></dd></div>
         {atom.data.source && atom.data.source.includes("http") ? <div class="dt-dd-line"><dt>Source:</dt> <dd><a href={atom.data.source}>{atom.data.source}</a></dd></div> : <div class="dt-dd-line"><dt>Source:</dt><dd>{atom.data.source}</dd></div>}
-        <div class="dt-dd-line">Molecules: {(atom.data.tags ? atom.data.tags.flatMap((molecule: string) => <span class="molecule"><a href=`/molecule/${molecule}/`>{molecule}</a> </span>) : "")}</div>
+        <div class="dt-dd-line">Molecules: {(atom.data.tags ? atom.data.tags.flatMap((molecule: string) => <span class="molecule"><a href=`/molecule/${molecule.replace(' ', '-')}/`>{molecule}</a> </span>) : "")}</div>
       </dl>
       <Fragment set:html={atom.rendered.html} />
 </Post>

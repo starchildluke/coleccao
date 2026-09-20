@@ -46,7 +46,7 @@ const title = "Molecules";
 	<h1>{title}</h1>
   <ul class="molecule-list">
   	{sortedMolecules.map((tag) =>
-  		<li><a href=`/molecule/${tag}/`>{tag}</a><span class="molecule-count"> ({processedMolecules[tag]})</span></li>
+  		<li><a href=`/molecule/${tag.replace(' ', '-')}/`>{tag}</a><span class="molecule-count"> ({processedMolecules[tag]})</span></li>
   	)}
   </ul>
 </Layout>
